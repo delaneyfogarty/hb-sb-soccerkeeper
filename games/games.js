@@ -35,7 +35,7 @@ nameForm.addEventListener('submit', (e) => {
     name1 = data.get('team-one');
     name2 = data.get('team-two');
     // reset the form values
-    nameForm.requestFullscreen();
+    nameForm.reset();
 
     displayCurrentGameEl();
 });
@@ -72,17 +72,16 @@ finishGameButton.addEventListener('click', async() => {
         name2: name2,
         score1: score1,
         score2: score2,
-    }
+    };
     // after creating this new game, re-fetch the games to get the updated state and display them (hint: call displayAllGames())
-    await createGame(newGame);
+    createGame(newGame);
     await displayAllGames();
 
+    displayCurrentGameEl();
     name1 = '';
     name2 = '';
     score1 = 0;
     score2 = 0;
-
-    displayCurrentGameEl();
 });
 
 logoutButton.addEventListener('click', () => {

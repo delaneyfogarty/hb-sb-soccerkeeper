@@ -21,11 +21,9 @@ export async function createGame(game){
     const response = await client
     // create a single new game in the games table using the above object
     .from('games')
-    .select('*')
-    .match({ id: game })
-    .single();
+    .insert(game);
 
-    return checkError(response);
+    return checkError(response.body);
 }
 
 export async function getGames() {
@@ -35,7 +33,7 @@ export async function getGames() {
     .from('games')
     .select('*');
 
-    return checkError(response);
+    return checkError(response.body);
 }
 
 export async function getUser() {
