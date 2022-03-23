@@ -23,17 +23,16 @@ export async function createGame(game){
     .from('games')
     .insert(game);
 
-    return checkError(response.body);
+    return checkError(response);
 }
 
 export async function getGames() {
     // select all games from the games table
     const response = await client
-
     .from('games')
     .select('*');
 
-    return checkError(response.body);
+    return checkError(response);
 }
 
 export async function getUser() {
