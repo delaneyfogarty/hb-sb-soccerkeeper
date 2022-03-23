@@ -1,6 +1,6 @@
-import { 
-    redirectToGames, 
-    signInUser, 
+import {
+    redirectToGames,
+    signInUser,
     signupUser,
 } from './fetch-utils.js';
 
@@ -29,7 +29,7 @@ signUpForm.addEventListener('submit', async(event)=>{
 signInForm.addEventListener('submit', async(event)=>{
     event.preventDefault();
     const user = await signInUser(signInEmail.value, signInPassword.value);
-    
+
     if (user){
         redirectToGames();
     } else {

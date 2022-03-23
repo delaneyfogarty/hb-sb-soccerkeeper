@@ -18,15 +18,24 @@ The games are stored in the database using this data model:
 */
 
 export async function createGame(game){
+    const response = await client
     // create a single new game in the games table using the above object
-    
+    .from('games')
+    .select('*')
+    .match({ id: game })
+    .single();
+
     return checkError(response);
 }
 
 export async function getGames() {
     // select all games from the games table
+    const response = await client
 
-    return checkError(response);    
+    .from('games')
+    .select('*');
+
+    return checkError(response);
 }
 
 export async function getUser() {
@@ -37,7 +46,7 @@ export async function getUser() {
 export async function checkAuth() {
     const user = await getUser();
 
-    if (!user) location.replace('../'); 
+    if (!user) location.replace('../');
 }
 
 export async function redirectToGames() {
@@ -48,7 +57,7 @@ export async function redirectToGames() {
 
 export async function signupUser(email, password){
     const response = await client.auth.signUp({ email, password });
-    
+
     return response.user;
 }
 
