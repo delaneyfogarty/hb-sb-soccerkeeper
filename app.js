@@ -1,7 +1,7 @@
-import { 
-    redirectToGames, 
-    signInUser, 
-    signupUser,
+import {
+  redirectToGames,
+  signInUser,
+  signupUser,
 } from './fetch-utils.js';
 
 const signInForm = document.getElementById('sign-in');
@@ -16,23 +16,25 @@ const signUpPassword = document.getElementById('sign-up-password');
 redirectToGames();
 
 signUpForm.addEventListener('submit', async(event)=>{
-    event.preventDefault();
-    const user = await signupUser(signUpEmail.value, signUpPassword.value);
+  event.preventDefault();
+  const user = await signupUser(signUpEmail.value, signUpPassword.value);
 
-    if (user){
-        redirectToGames();
-    } else {
-        console.error(user);
-    }
+  if (user){
+    redirectToGames();
+  } else {
+    // eslint-disable-next-line no-console
+    console.error(user);
+  }
 });
 
 signInForm.addEventListener('submit', async(event)=>{
-    event.preventDefault();
-    const user = await signInUser(signInEmail.value, signInPassword.value);
-    
-    if (user){
-        redirectToGames();
-    } else {
-        console.error(user);
-    }
+  event.preventDefault();
+  const user = await signInUser(signInEmail.value, signInPassword.value);
+
+  if (user){
+    redirectToGames();
+  } else {
+    // eslint-disable-next-line no-console
+    console.error(user);
+  }
 });
